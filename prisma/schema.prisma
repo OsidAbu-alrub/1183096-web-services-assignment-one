@@ -6,3 +6,64 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Category {
+  categoryId      Int               @id @default(autoincrement())
+  name            String?           @db.VarChar(255)
+  productcategory ProductCategory[]
+}
+
+model Customer {
+  customerId  Int       @id @default(autoincrement())
+  firstName   String?   @db.VarChar(255)
+  lastName    String?   @db.VarChar(255)
+  dateOfBirth DateTime? @db.Date
+  order       Order[]
+}
+
+model Order {
+  orderId      Int            @id @default(autoincrement())
+  customerId   Int?
+  orderDate    DateTime?      @db.Date
+  customer     Customer?      @relation(fields: [customerId], references: [customerId], onDelete: Cascade, onUpdate: NoAction, map: "FK_CUSTOMER_ID_CUSTOEMR_ID")
+  orderproduct OrderProduct[]
+
+  @@index([customerId], map: "FK_CUSTOMER_ID_CUSTOEMR_ID")
+}
+
+model OrderProduct {
+  productId Int
+  orderId   Int
+  order     Order   @relation(fields: [orderId], references: [orderId], onDelete: Cascade, onUpdate: NoAction, map: "FK_ORDER_ID_ORDER_ID")
+  product   Product @relation(fields: [productId], references: [productId], onDelete: Cascade, onUpdate: NoAction, map: "FK_PRODUCT_ID_PRODUCT_ID")
+
+  @@id([productId, orderId])
+  @@index([orderId], map: "FK_ORDER_ID_ORDER_ID")
+}
+
+model Product {
+  productId       Int               @id @default(autoincrement())
+  name            String?           @db.VarChar(255)
+  orderproduct    OrderProduct[]
+  productcategory ProductCategory[]
+  supplier        Supplier[]
+}
+
+model ProductCategory {
+  productId  Int
+  categoryId Int
+  category   Category @relation(fields: [categoryId], references: [categoryId], onDelete: Cascade, onUpdate: NoAction, map: "FK_PRODUCT_CATEGORY_CATEGORY_ID_CATEGORY_CATEGORY_ID")
+  product    Product  @relation(fields: [productId], references: [productId], onDelete: Cascade, onUpdate: NoAction, map: "FK_PRODUCT_CATEGORY_PRODUCT_ID_PRODUCT_PRODUCT_ID")
+
+  @@id([productId, categoryId])
+  @@index([categoryId], map: "FK_PRODUCT_CATEGORY_CATEGORY_ID_CATEGORY_CATEGORY_ID")
+}
+
+model Supplier {
+  supplierId Int      @id @default(autoincrement())
+  name       String?  @db.VarChar(255)
+  productId  Int?
+  product    Product? @relation(fields: [productId], references: [productId], onDelete: Cascade, onUpdate: NoAction, map: "FK_SUPPLIER_PRODUCT_ID_PRODUCT_PRODUCT_ID")
+
+  @@index([productId], map: "FK_SUPPLIER_PRODUCT_ID_PRODUCT_PRODUCT_ID")
+}
