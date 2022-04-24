@@ -1,11 +1,12 @@
 import { Module } from "@nestjs/common"
 import { ConfigModule } from "@nestjs/config"
-import { AppController } from "./app.controller"
-import { AppService } from "./app.service"
+import { ProductModule } from "./products/product.module"
+import { PrismaModule } from "src/prisma/prisma.module"
 
+// this is the entry point
+// if you dont import modules here, you will not be able
+// to use them in your application
 @Module({
-  imports: [ConfigModule.forRoot()],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [ConfigModule.forRoot(), PrismaModule, ProductModule],
 })
 export class AppModule {}
