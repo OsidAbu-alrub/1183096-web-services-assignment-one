@@ -1,6 +1,4 @@
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# Owner: Osid Abu-Alrub (1183096)
 
 ## Installation
 
