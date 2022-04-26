@@ -18,19 +18,9 @@ $ npm run install
 
 ```bash
 # development
-$ yarn start
+$ yarn dev
 # OR
-$ npm run start
-
-# watch mode
-$ yarn start:dev
-# OR
-$ npm run start:dev
-
-# production mode
-$ yarn start:prod
-# OR
-$ npm run start:prod
+$ npm run dev
 ```
 
 ## Design
