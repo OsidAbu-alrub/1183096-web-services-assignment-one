@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "d31a0948-baaf-499e-b45b-dd068b67f8fc",
+		"name": "ProductCategory",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add product to category",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoryId\":2,\r\n    \"productId\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/v1/product-category/link",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"product-category",
+						"link"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get products by category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/api/v1/product-category/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"product-category",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
