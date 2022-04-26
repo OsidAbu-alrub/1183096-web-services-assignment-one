@@ -23,15 +23,22 @@ export class CategoryService {
   }
 
   async deleteCategory(categoryId: Category["categoryId"]): Promise<void> {
-    const deletedCategory = await this.prismaService.category.delete({
+    const doesExist = await this.prismaService.category.findUnique({
       where: {
         categoryId,
       },
     })
-    if (!deletedCategory)
+
+    if (!doesExist)
       throw new InternalServerErrorException({
-        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-        message: `Category with id ${deletedCategory} can't be deleted`,
+        statusCode: HttpStatus.NOT_FOUND,
+        message: `Category with id ${categoryId} was not found`,
       })
+
+    await this.prismaService.category.delete({
+      where: {
+        categoryId,
+      },
+    })
   }
 }

@@ -74,9 +74,18 @@ export class CategoryController {
         data: `Category with id ${categoryId} was deleted successfully`,
       }
     } catch (e: unknown) {
-      const error = e as HttpException
+      if (e instanceof HttpException) {
+        const error = e as HttpException
+        return {
+          validation: { ...(error.getResponse() as ValidationResponse) },
+          data: null,
+        }
+      }
       return {
-        validation: { ...(error.getResponse() as ValidationResponse) },
+        validation: {
+          message: "Internal Server Error",
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        },
         data: null,
       }
     }
