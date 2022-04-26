@@ -15,6 +15,12 @@ import { ProductService } from "./product.service"
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
+  /**
+   * Adds a product to database
+   *
+   * @param productName
+   * @returns productId - the ID of the added product
+   */
   @Post("add")
   async addProduct(
     @Body("name") productName: Product["name"],
@@ -31,6 +37,11 @@ export class ProductController {
     }
   }
 
+  /**
+   * Gets all products from database
+   *
+   * @returns products - All the products in the database
+   */
   @Get("all")
   async getAllProducts(): Promise<BaseResponse<Product[]>> {
     const products = await this.productService.getAllProducts()
@@ -43,6 +54,12 @@ export class ProductController {
     }
   }
 
+  /**
+   * get a specific product from database
+   *
+   * @param productId - the ID of the queried product
+   * @returns product - the product queried from database
+   */
   @Get(":id")
   async findProduct(
     @Param("id") productId: string,

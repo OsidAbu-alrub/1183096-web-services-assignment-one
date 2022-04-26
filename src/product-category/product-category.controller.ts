@@ -17,6 +17,13 @@ export class ProductCategoryController {
     private readonly productCategoryService: ProductCategoryService,
   ) {}
 
+  /**
+   * add product to category
+   *
+   * @param categoryId
+   * @param productId
+   * @returns message if prdouct was added to category successfully
+   */
   @Post("link")
   async addProductToCategory(
     @Body("categoryId") categoryId: ProductCategory["categoryId"],
@@ -43,6 +50,12 @@ export class ProductCategoryController {
     }
   }
 
+  /**
+   * get products by category
+   *
+   * @param categoryId
+   * @returns products - products related to categoryId
+   */
   @Get(":categoryId")
   async getProductsByCategory(
     @Param("categoryId") categoryId: string,

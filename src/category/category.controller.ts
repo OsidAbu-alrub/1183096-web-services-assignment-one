@@ -16,10 +16,11 @@ import { CategoryService } from "./category.service"
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
-  /***
-   * Adds a product and
+  /**
+   * add category to database
    *
    * @param categoryName
+   * @returns categoryId - the ID of the created category
    */
   @Post("add")
   async addCategory(
@@ -37,6 +38,11 @@ export class CategoryController {
     }
   }
 
+  /**
+   * get all categories from database
+   *
+   * @returns categories - all categories in database
+   */
   @Get("all")
   async getAllCategories(): Promise<BaseResponse<Category[]>> {
     const categories = await this.categoryService.getAllCategories()
@@ -49,6 +55,11 @@ export class CategoryController {
     }
   }
 
+  /**
+   * delete category from database
+   *
+   * @param categoryId - the category ID to be deleted
+   */
   @Delete(":id")
   async deleteCategory(
     @Param("id") categoryId: string,
