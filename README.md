@@ -37,3 +37,7 @@ $ npm run start:prod
 |     GET     | api/v1/products/all |       200        |    Get all available<br>products     |
 |     GET     | api/v1/products/:id |       200        | Get a specific product<br>via its id |
 |     GET     | api/v1/products/:id |       404        |  Get product that can't<br>be found  |
+
+## TODO
+
+- Add DTOs when needed 
