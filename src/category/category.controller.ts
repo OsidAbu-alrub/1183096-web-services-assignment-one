@@ -16,8 +16,13 @@ import { CategoryService } from "./category.service"
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
+  /***
+   * Adds a product and
+   *
+   * @param categoryName
+   */
   @Post("add")
-  async addProduct(
+  async addCategory(
     @Body("categoryName") categoryName: Category["name"],
   ): Promise<BaseResponse<Category>> {
     const createdCategory = await this.categoryService.createCategory(
@@ -33,7 +38,7 @@ export class CategoryController {
   }
 
   @Get("all")
-  async getAllProducts(): Promise<BaseResponse<Category[]>> {
+  async getAllCategories(): Promise<BaseResponse<Category[]>> {
     const categories = await this.categoryService.getAllCategories()
     return {
       validation: {
@@ -45,7 +50,7 @@ export class CategoryController {
   }
 
   @Delete(":id")
-  async findProduct(
+  async deleteCategory(
     @Param("id") categoryId: string,
   ): Promise<BaseResponse<string>> {
     try {

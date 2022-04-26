@@ -18,7 +18,7 @@ export class ProductCategoryController {
   ) {}
 
   @Post("link")
-  async addProduct(
+  async addProductToCategory(
     @Body("categoryId") categoryId: ProductCategory["categoryId"],
     @Body("productId") productId: ProductCategory["productId"],
   ): Promise<BaseResponse<string>> {
