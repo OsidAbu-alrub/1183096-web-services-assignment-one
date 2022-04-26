@@ -11,7 +11,7 @@ import { Product } from "@prisma/client"
 import BaseResponse, { ValidationResponse } from "src/BaseResponse"
 import { ProductService } from "./product.service"
 
-@Controller("products")
+@Controller("product")
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
@@ -25,7 +25,7 @@ export class ProductController {
     return {
       validation: {
         message: "",
-        statusCode: HttpStatus.ACCEPTED,
+        statusCode: HttpStatus.OK,
       },
       data: createdProductId,
     }
@@ -37,7 +37,7 @@ export class ProductController {
     return {
       validation: {
         message: "",
-        statusCode: HttpStatus.ACCEPTED,
+        statusCode: HttpStatus.OK,
       },
       data: products,
     }
@@ -52,7 +52,7 @@ export class ProductController {
       return {
         validation: {
           message: "",
-          statusCode: HttpStatus.ACCEPTED,
+          statusCode: HttpStatus.OK,
         },
         data: product,
       }
