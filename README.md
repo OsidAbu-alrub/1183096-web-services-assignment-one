@@ -1,5 +1,9 @@
 # Owner: Osid Abu-Alrub (1183096)
 
+## Documentation commit
+
+https://github.com/OsidAbu-alrub/e-commerce-application/commit/e67e6dd99a8e387d8f2324c5f4075149291074fc
+
 ## Installation
 
 Must have [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable) OR [npm](https://nodejs.org/en/download/) installed to run the project without issues
