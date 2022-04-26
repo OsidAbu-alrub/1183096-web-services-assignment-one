@@ -79,6 +79,28 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Delete non-existing category",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/api/v1/category/-1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"category",
+						"-1"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
